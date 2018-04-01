@@ -1,0 +1,61 @@
+<div class="row" style="margin-top:-15px;">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <h4>Movies Inventory ({{movies?.length}})</h4>
+        </div>
+        <div class="col-md-9">
+            <div class="btn-group pull-right" data-toggle="buttons" style="margin-top:5px;">
+                <label class="btn btn-default btn-sm btn-view-type" (click)="onSelectView('thumbs')">
+                    <input type="checkbox" name="options">
+                    <i class="fas fa-th" [ngClass]="{'selected-view' : selectedViewType === 'thumbs'}"></i>
+                </label>
+                <label class="btn btn-default btn-sm btn-sm btn-view-type" (click)="onSelectView('detail')">
+                    <i class="fa fa-list" [ngClass]="{'selected-view' : selectedViewType === 'detail'}"></i>
+                    <input type="checkbox" name="options">
+                </label>
+            </div>
+          </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="form-group form-group-sm">
+                <select name="" id="" class="form-control" (change)="onSelectCategory(category.value)" #category>
+                    <option value="-1">All Categories</option>
+                    <option *ngFor="let category of categories" [value]="category.id">{{category?.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search Movies by Name" #txtSearchValue>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group form-group-sm pull-right">
+                <select name="" id="" class="form-control" (change)="onSelectMoviesPerPage(moviesPerPage?.value)" #moviesPerPage>
+                    <option [value]="defaultMoviesPerPageValue">25 Movies Per Page</option>
+                    <option value="50">50 Movies Per Page</option>
+                    <option value="75">75 Movies Per Page</option>
+                    <option value="100">100 Movies Per Page</option>
+                    <option value="200">200 Movies Per Page</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:-20px;">
+          <hr>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="selectedViewType === 'thumbs'">
+   <div class="col-sm-2" *ngFor="let movie of filteredMovies">
+       <app-movie-card (onClickRentMovie)="onRentMovie($event)" [movie]="movie"></app-movie-card>
+   </div>
+</div>
+<div class="row" *ngIf="selectedViewType === 'detail'">
+    <app-movie-detail (onClickRentMovie)="onRentMovie($event)" *ngFor="let movie of filteredMovies" [movie]="movie"></app-movie-detail>
+ </div>
+
+ <app-movie-rent-modal (onSaveMovieRent)="onSaveRent($event)"
+                       [categories]="categories"
+                       [selectedMovie]="selectedMovie"
+                       [movies]="movies"
+                       [modalId]="rentMovieModalId"></app-movie-rent-modal>

@@ -1,0 +1,74 @@
+<div class="modal fade" tabindex="-1" role="dialog" [id]="modalId">
+    <div class="modal-dialog" role="document">
+      <form [formGroup]="rentMovieForm">
+          <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" (click)="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{ selectedMovie ? 'Rent Movie: ' + selectedMovie?.title : 'Rent Movie Form'}}</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                           <label for="">Category:</label>
+                           <select class="form-control" #category (change)="onSelectCategory(category?.value)">
+                             <option value="-1"> All Categories</option>
+                             <option *ngFor="let category of categories" [value]="category?.id">{{ category?.name }}</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                           <label for="">Movie: <span class="required-ind">*</span></label>
+                           <select class="form-control" formControlName="movie" [value]="selectedMovie?.id" (change)="onSelectMovie(movie?.value)" #movie>
+                             <option value="-1"> Select Movie</option>
+                             <option *ngFor="let movie of filteredMovies" [value]="movie?.id">{{ movie?.title }}</option>
+                           </select>
+                        </div>
+                    </div>
+                   <div class="col-md-12">
+                       <div class="form-group">
+                          <label for="">Customer Name: <span class="required-ind">*</span></label>
+                          <input type="text" class="form-control" placeholder="Customer Name" formControlName="customerName">
+                       </div>
+                   </div>
+                   <div class="col-md-12">
+                      <div class="form-group">
+                         <label for="">Days Quantity: <span class="required-ind">*</span></label>
+                         <input type="number" class="form-control" placeholder="Days Quantity" formControlName="daysQuantity">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                         <label for="">Start Date:</label>
+                         <input type="text" class="form-control" placeholder="Start Date" disabled #txtStartDate>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                         <label for="">End Date:</label>
+                         <input type="text" class="form-control" placeholder="End Date" disabled #txtEndDate>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                         <label for="">Price:</label>
+                         <input type="number" class="form-control" placeholder="Price" disabled #txtPriceAmt>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                         <label for="">Penalty:</label>
+                         <input type="number" class="form-control" placeholder="Penalty" disabled #txtPenaltyAmt>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="!rentMovieForm?.valid" (click)="onSaveRent()">Rent Movie</button>
+                <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+      </form>
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

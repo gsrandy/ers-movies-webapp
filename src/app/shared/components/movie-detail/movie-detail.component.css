@@ -1,0 +1,37 @@
+.thumbnail {
+  background: transparent;
+  border-color: transparent;
+  cursor:pointer;
+}
+
+img{
+  margin-bottom: 15px;
+  border-radius: 5px;
+  transition: all 0.5s ease-out;
+  border: 0;
+  height: 300px;
+  max-width: 100%;
+  vertical-align: middle
+}
+
+h5{
+  font-family: 'Dosis', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 24px !important;
+}
+
+.imdb-icon{
+  color : darkgoldenrod;
+}
+
+p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #abb7c4;
+  font-weight: 300;
+  text-transform: none;
+  line-height: 24px !important;
+}

@@ -1,0 +1,18 @@
+.navbar-default{
+  background-color: #0f2133 !important;
+  color: white !important;
+  border-color: transparent;
+  font-family: 'Dosis', sans-serif;
+}
+
+a{
+  color : white;
+  cursor : pointer;
+}
+
+.navbar-default .navbar-nav > .active{
+  color: white;
+  background-color: #020d18 !important;
+}
+
+

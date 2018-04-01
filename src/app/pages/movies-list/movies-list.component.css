@@ -1,0 +1,17 @@
+h4{
+  color : white;
+  font-family: 'Dosis', sans-serif;
+}
+
+label{
+  color : white;
+}
+
+.selected-view{
+   color : yellow;
+}
+
+.btn-view-type{
+    background-color: #020d18;
+    color: white;
+}

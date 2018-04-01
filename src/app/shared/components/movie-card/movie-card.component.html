@@ -1,0 +1,13 @@
+<div class="thumbnail" (click)="onRentMovie()">
+    <img [src]="movie?.imageUrl" class="center" height="20px;" alt="">
+      <div class="caption text-center">
+        <h4>{{ movie?.title }}</h4>
+        <p>
+          <i class="fas fa-star imdb-icon"></i>
+          {{ movie?.rating}}
+        </p>
+        <p>
+          <span class="label " [ngClass]="{'label-success' : movie?.status === 'A', 'label-danger' : movie?.status === 'R'}">{{ getStatusDescription(movie?.status)}}</span>
+        </p>
+    </div>
+  </div>

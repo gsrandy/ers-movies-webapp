@@ -1,0 +1,12 @@
+<div class="container">
+
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="loginWithEmailAndPassword()">
+      <h1 class="form-signin-heading text-muted">ERS Movies Login</h1>
+      <input type="text" class="form-control" placeholder="Username" formControlName="username">
+      <input type="password" class="form-control" placeholder="Password" formControlName="password">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm?.valid">
+        Login
+      </button>
+    </form>
+
+  </div>

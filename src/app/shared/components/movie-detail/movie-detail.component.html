@@ -1,0 +1,31 @@
+<div class="col-md-12">
+        <div class="col-md-2">
+          <div class="thumbnail">
+              <img [src]="movie?.imageUrl" class="center" alt="">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="col-md-12">
+                <h5>{{movie?.title}}
+                    <span class="label " [ngClass]="{'label-success' : movie?.status === 'A', 'label-danger' : movie?.status === 'R'}">{{ getStatusDescription(movie?.status)}}</span>
+                </h5>
+                <p>
+                    <i class="fas fa-star imdb-icon"></i>
+                    {{ movie?.rating}}
+                </p>
+                <p>
+                  {{ movie?.description }}
+                </p>
+                <hr>
+                <p>Category: {{ movie?.categoryName }}</p>
+                <p> duration: {{movie?.duration}},  Release Date: {{ movie?.releaseDate}}</p>
+                <p>Director: {{ movie?.director }}</p>
+                <p>Actors: {{ movie?.stars }}</p>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-md" type="button" (click)="onRentMovie()">
+                     Rent Movie
+                </button>
+            </div>
+        </div>
+</div>
