@@ -1,7 +1,6 @@
 <div class="row">
    <div class="col-md-12">
       <h3>
-        <i class="fa fa-list"></i>
           Movies Rents List
       </h3>
    </div>
@@ -23,13 +22,21 @@
         class="dark"
         [rows]="filteredMovieRents"
         [loadingIndicator]="true"
-        [columns]="columns"
         [columnMode]="'force'"
         [headerHeight]="40"
         [footerHeight]="40"
         [limit]="20"
         [rowHeight]="'auto'"
         [reorderable]="true">
+
+        <ngx-datatable-column *ngFor="let colName of columns" [prop]="colName?.prop"></ngx-datatable-column>
+        <ngx-datatable-column [width]="100" [sortable]="false">
+            <ng-template ngx-datatable-cell-template let-row="row" >
+              <button class="btn-md btn-primary btn" (click)="onReturnMovie(row)" *ngIf="row?.status === 'A' || row?.status === 'D'">
+                <i class="fas fa-check"></i>
+              </button>
+            </ng-template>
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>

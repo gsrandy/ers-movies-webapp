@@ -4,6 +4,7 @@ import { MovieRentInfo } from "../models/movie-rent-info.interface";
 import { environment } from "../../environments/environment";
 import { Observable } from 'rxjs/Rx';
 import { MovieRent } from "../models/movie-rent.model";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MovieRentService{
@@ -55,5 +56,11 @@ export class MovieRentService{
         movieRent.returnedAt = mr.returned_at;
         movieRent.returnedBy = mr.returned_by;
         return movieRent;
+    }
+
+    public returnMovieRent(movieRentId : number) : Observable<MovieRent>{
+        const serverUrl : string = environment.serverUrl + '/api/rent/movies_rent/' +movieRentId +'/';
+        return this.httpClient.put(serverUrl , {}).
+                    map((response)=> this.convertMovieRent(response));
     }
 }

@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@swimlane/ngx-datatable": "^11.2.0",
+    "@toverux/ngsweetalert2": "^2.0.1",
+    "@toverux/ngx-sweetalert2": "^3.4.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jQuery": "^1.7.4",
@@ -29,6 +31,7 @@
     "moment": "^2.22.0",
     "ngx-toastr": "^8.3.2",
     "rxjs": "^5.5.6",
+    "sweetalert2": "^7.18.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

@@ -8,6 +8,8 @@ import { CatalogService } from '../../services/catalog.service';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { MovieRentInfo } from '../../models/movie-rent-info.interface';
 import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
+import * as moment from 'moment';
 
 declare var $ : any;
 
@@ -107,6 +109,7 @@ export class RentsListComponent implements OnInit, OnDestroy {
            subscribe((response)=>{
               const movieRent : MovieRent = this.movieRentService.convertMovieRent(response);
               this.moviesRents.push(movieRent);
+              this.filteredMovieRents.push(movieRent);
               this.toastrService.success('Movie Rented Successfully!');
               $('#' + this.rentMovieModalId).modal('hide');
            },(error)=>{
@@ -118,6 +121,53 @@ export class RentsListComponent implements OnInit, OnDestroy {
                }
               );
            });
+  }
+
+  onReturnMovie(movieRent : MovieRent){
+    const rentEndDate = moment(movieRent.rentEndDate, "YYYY-MM-DD");
+    const currentDate = moment();
+    if(currentDate > rentEndDate){
+      swal({
+        title: 'Important Info',
+        text: 'This Movie Rent is in delay status, aditional charges will be apply!',
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Proceed',
+        cancelButtonText: 'No, Cancel'
+      }).then((success) => {
+           this.returnMovieRent(movieRent);
+        },
+        function (dismiss) {
+          // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+          if (dismiss === 'cancel') {
+          }
+        });
+    }else{
+        this.returnMovieRent(movieRent);
+    }
+  }
+
+  returnMovieRent(movieRent : MovieRent){
+    this.movieRentService.
+          returnMovieRent(movieRent.id).
+          subscribe((response)=>{
+              const index : number = this.moviesRents.findIndex((mr)=> mr.id === response.id);
+              this.moviesRents[index] = response;
+              const fIndex : number = this.filteredMovieRents.findIndex((mr)=> mr.id === response.id);
+              console.log('FiNDEX: ' , fIndex);
+              if(fIndex > -1){
+                this.filteredMovieRents[fIndex] = response;
+              }
+              this.toastrService.success('Movie Returned Successfully!');
+          },(error)=>{
+            this.applicationService.handleHttpError(
+              {
+                error : error,
+                redirectToLoginOn401 : true,
+                message : 'Some Error!'
+             }
+            );
+          });
   }
 
 }

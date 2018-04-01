@@ -25,11 +25,13 @@
         "../node_modules/@swimlane/ngx-datatable/release/themes/material.css",
         "../node_modules/@swimlane/ngx-datatable/release/themes/dark.css",
         "../node_modules/ngx-toastr/toastr.css",
-        "styles.css"
+        "styles.css",
+        "../node_modules/sweetalert2/dist/sweetalert2.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/sweetalert2/dist/sweetalert2.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
